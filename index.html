@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap' );
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .chart-container { min-height: 350px; }
     </style>
@@ -24,29 +24,33 @@
         </div>
     </header>
     <main class="max-w-7xl mx-auto px-6 py-8">
-        <!-- KPIs Principais -->
+        <!-- Destaques -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-600">
                 <div class="flex items-center justify-between">
-                    <div><p class="text-slate-600 text-sm font-medium uppercase">Total de Atendimentos</p><p class="text-3xl font-bold text-slate-900 mt-2">15.242</p></div>
+                    <div><p class="text-slate-600 text-sm font-medium uppercase">Total de Atendimentos</p><p class="text-3xl font-bold text-slate-900 mt-2">15.267</p></div>
                     <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="bar-chart-3" class="w-8 h-8 text-blue-600"></i></div>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-400">
                 <div class="flex items-center justify-between">
-                    <div><p class="text-slate-600 text-sm font-medium uppercase">Base de Ativos</p><p class="text-3xl font-bold text-slate-900 mt-2">164.717</p></div>
+                    <div>
+                        <p class="text-slate-600 text-sm font-medium uppercase">Base de Ativos</p>
+                        <p class="text-3xl font-bold text-slate-900 mt-2">164.717</p>
+                        <p class="text-[10px] text-slate-400 mt-1 italic">Base GPO não inclusa</p>
+                    </div>
                     <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="users" class="w-8 h-8 text-blue-400"></i></div>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
                 <div class="flex items-center justify-between">
-                    <div><p class="text-slate-600 text-sm font-medium uppercase">Atendimentos / Base</p><p class="text-3xl font-bold text-slate-900 mt-2">9,25%</p></div>
+                    <div><p class="text-slate-600 text-sm font-medium uppercase">Atendimentos / Base</p><p class="text-3xl font-bold text-slate-900 mt-2">9,27%</p></div>
                     <div class="bg-yellow-100 p-4 rounded-full"><i data-lucide="trending-up" class="w-8 h-8 text-yellow-600"></i></div>
                 </div>
             </div>
         </div>
 
-        <!-- Evolução Comparativa -->
+        <!-- Gráfico de Evolução -->
         <div class="bg-white rounded-lg shadow-md p-6 mb-8 relative">
             <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Evolução Comparativa de Atendimentos Consolidados</h2>
             <div id="evolutionChart" class="chart-container"></div>
@@ -56,147 +60,314 @@
             </div>
         </div>
 
-        <!-- Distribuição por Canal -->
+        <!-- Tabelas e Distribuição -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
             <div class="lg:col-span-1">
                 <div class="bg-white rounded-lg shadow-md overflow-hidden h-full">
-                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4"><h2 class="text-white font-bold text-lg uppercase">Volume Total por IE</h2></div>
-                    <div class="overflow-x-auto"><table class="w-full"><thead class="bg-slate-50 border-b border-slate-200"><tr><th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">IE</th><th class="px-6 py-3 text-right text-sm font-semibold text-slate-700">CASOS</th></tr></thead><tbody id="ieTotalTableBody"></tbody></table></div>
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4"><h2 class="text-white font-bold text-lg uppercase">Volume Total por IE - Junho</h2></div>
+                    <div class="overflow-x-auto"><table class="w-full"><thead class="bg-slate-50 border-b border-slate-200"><tr><th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">IE</th><th class="px-6 py-3 text-right text-sm font-semibold text-slate-700">CASOS</th></tr></thead><tbody id="ieTableBody"></tbody></table></div>
                 </div>
             </div>
             <div class="lg:col-span-2">
                 <div class="bg-white rounded-lg shadow-md p-6 h-full">
-                    <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Distribuição por Canal de Atendimento</h2>
+                    <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Distribuição de Atendimentos por Canal</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div class="relative"><div id="canalChart"></div><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-2 text-center pointer-events-none"><span class="block text-4xl font-bold text-slate-900">15.242</span><span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Atendimentos</span></div></div>
+                        <div class="relative"><div id="canalChart"></div><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -mt-2 text-center pointer-events-none"><span class="block text-4xl font-bold text-slate-900">15.267</span><span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total</span></div></div>
                         <div class="space-y-4" id="canalLegend"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Tabelas Detalhadas -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4 flex items-center gap-2">
-                    <i data-lucide="message-circle" class="text-white w-5 h-5"></i>
-                    <h2 class="text-white font-bold text-lg uppercase">Atendimentos via WhatsApp</h2>
-                </div>
-                <div class="overflow-x-auto"><table class="w-full"><thead class="bg-slate-50 border-b border-slate-200"><tr><th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">IE</th><th class="px-6 py-3 text-right text-sm font-semibold text-slate-700">VOLUME</th></tr></thead><tbody id="wppTableBody"></tbody></table></div>
-            </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-6 py-4 flex items-center gap-2">
-                    <i data-lucide="mail" class="text-white w-5 h-5"></i>
-                    <h2 class="text-white font-bold text-lg uppercase">Atendimentos via E-mail</h2>
-                </div>
-                <div class="overflow-x-auto"><table class="w-full"><thead class="bg-slate-50 border-b border-slate-200"><tr><th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">IE</th><th class="px-6 py-3 text-right text-sm font-semibold text-slate-700">VOLUME</th></tr></thead><tbody id="emailTableBody"></tbody></table></div>
-            </div>
-        </div>
+        <!-- Gráfico de Evolução por IE -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8"><h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Evolução de Atendimentos por IE</h2><div id="ieEvolutionChart" class="chart-container"></div></div>
 
         <!-- Análise Executiva -->
-        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Análise Executiva</h2>
-            <div class="space-y-4" id="executiveAnalysis"></div>
-        </section>
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8"><h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Principais Insights</h2><div class="space-y-4" id="executiveAnalysis"></div></section>
 
-        <!-- Detalhamento por Instituição -->
-        <h2 class="text-xl font-bold text-slate-900 mb-6 uppercase tracking-tight">Detalhamento por Instituição</h2>
+        <!-- Detalhamento por IE -->
         <section class="space-y-6 mb-8" id="ieCards"></section>
 
-        <!-- Maiores Concentradores -->
+        <!-- TOP 5 Motivos -->
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Maiores Concentradores de Demanda</h2>
+            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">TOP 5 - Motivos de Contato</h2>
             <div class="overflow-x-auto">
                 <table class="w-full">
-                    <thead class="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700 w-16">RANK</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700 w-64">MOTIVO</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">DESCRIÇÃO DETALHADA</th>
+                    <thead>
+                        <tr class="bg-blue-600 text-white">
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Rank</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Motivo de Contato</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Classificação de Assuntos</th>
                         </tr>
                     </thead>
-                    <tbody id="topMotivosTableBody"></tbody>
+                    <tbody id="motivosTableBody"></tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Ranking Origens -->
+        <!-- TOP 5 Origens -->
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Ranking - Origens das Motivações</h2>
+            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">TOP 5 - Origens das Motivações</h2>
             <div class="overflow-x-auto">
                 <table class="w-full">
-                    <thead class="bg-slate-50 border-b border-slate-200">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700 w-16">RANK</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700 w-64">ÁREA</th>
-                            <th class="px-6 py-3 text-left text-sm font-semibold text-slate-700">DETALHAMENTO DA ORIGEM</th>
+                    <thead>
+                        <tr class="bg-blue-600 text-white">
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Rank</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Origem</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Classificação de Assuntos</th>
                         </tr>
                     </thead>
                     <tbody id="origensTableBody"></tbody>
                 </table>
             </div>
         </section>
+
+        <!-- Maiores Concentradores -->
+        <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Maiores Concentradores de Demanda</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-blue-600 text-white">
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Rank</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Motivo</th>
+                            <th class="px-4 py-3 text-left text-sm font-semibold">Descrição</th>
+                            <th class="px-4 py-3 text-right text-sm font-semibold">Volume</th>
+                            <th class="px-4 py-3 text-right text-sm font-semibold">%</th>
+                        </tr>
+                    </thead>
+                    <tbody id="concentradoresTableBody"></tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
     <script>
-        const ieDataTotal = [{name:"PUCRS ONLINE",value:9925},{name:"FAAP ONLINE",value:2364},{name:"FSL DIGITAL",value:1477},{name:"FIA ONLINE",value:899},{name:"UNESC DIGITAL",value:385},{name:"IMPACTA DIGITAL",value:190},{name:"STA CASA ONLINE",value:2}];
-        const ieDataWpp = [{name:"PUCRS ONLINE",value:8380},{name:"FAAP ONLINE",value:1857},{name:"FSL DIGITAL",value:1086},{name:"FIA ONLINE",value:551},{name:"UNESC DIGITAL",value:320},{name:"IMPACTA DIGITAL",value:136},{name:"STA CASA ONLINE",value:0}];
-        const ieDataEmail = [{name:"PUCRS ONLINE",value:1545},{name:"FAAP ONLINE",value:507},{name:"FSL DIGITAL",value:391},{name:"FIA ONLINE",value:348},{name:"UNESC DIGITAL",value:65},{name:"IMPACTA DIGITAL",value:54},{name:"STA CASA ONLINE",value:2}];
-        const canalData = [{name:"WhatsApp",value:12330,color:"#22c55e"},{name:"E-mail",value:2937,color:"#334155"}];
-        const historicoMensal = [{mes:"jan/26",total:20135,base:134964,percentual:14.93},{mes:"fev/26",total:16718,base:144244,percentual:11.59},{mes:"mar/26",total:20454,base:151338,percentual:13.51},{mes:"abr/26",total:21323,base:156615,percentual:13.61},{mes:"mai/26",total:16377,base:162397,percentual:10.08},{mes:"jun/26",total:15242,base:164717,percentual:9.25}];
+        // Dados de IE
+        const ieData = [
+            {name:"PUCRS ONLINE",value:9925},
+            {name:"FAAP ONLINE",value:2364},
+            {name:"FIA ONLINE",value:899},
+            {name:"IMPACTA DIGITAL",value:190},
+            {name:"FSL DIGITAL",value:1477},
+            {name:"UNESC DIGITAL",value:385},
+            {name:"SANTA CASA ONLINE",value:2}
+        ];
 
-        const ieTotalTable = document.getElementById('ieTotalTableBody');
-        ieDataTotal.forEach(item => { ieTotalTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-3 text-sm text-slate-900">${item.name}</td><td class="px-6 py-3 text-sm text-slate-900 text-right font-medium">${item.value.toLocaleString('pt-BR')}</td></tr>`; });
-        ieTotalTable.innerHTML += `<tr class="bg-blue-50 border-t-2 border-blue-200"><td class="px-6 py-3 text-sm font-bold text-slate-900">CONSOLIDADO</td><td class="px-6 py-3 text-sm font-bold text-slate-900 text-right">15.242</td></tr>`;
+        // Dados de Canal
+        const canalData = [
+            {name:"WhatsApp",value:12330,color:"#1e3a8a"},
+            {name:"E-mail",value:2937,color:"#fbbf24"}
+        ];
 
-        const wppTable = document.getElementById('wppTableBody');
-        ieDataWpp.forEach(item => { wppTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-3 text-sm text-slate-900">${item.name}</td><td class="px-6 py-3 text-sm text-slate-900 text-right font-medium">${item.value.toLocaleString('pt-BR')}</td></tr>`; });
-        wppTable.innerHTML += `<tr class="bg-green-50 border-t-2 border-green-200"><td class="px-6 py-3 text-sm font-bold text-slate-900">TOTAL WHATSAPP</td><td class="px-6 py-3 text-sm font-bold text-slate-900 text-right">12.330</td></tr>`;
+        // Dados Históricos Mensais
+        const historicoMensal = [
+            {mes:"jan/26",total:20436,base:134964,percentual:15.15},
+            {mes:"fev/26",total:17473,base:144244,percentual:12.11},
+            {mes:"mar/26",total:20630,base:151440,percentual:13.63},
+            {mes:"abr/26",total:21482,base:156615,percentual:13.72},
+            {mes:"mai/26",total:16377,base:162397,percentual:10.08},
+            {mes:"jun/26",total:15267,base:164717,percentual:9.27}
+        ];
 
-        const emailTable = document.getElementById('emailTableBody');
-        ieDataEmail.forEach(item => { emailTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-3 text-sm text-slate-900">${item.name}</td><td class="px-6 py-3 text-sm text-slate-900 text-right font-medium">${item.value.toLocaleString('pt-BR')}</td></tr>`; });
-        emailTable.innerHTML += `<tr class="bg-slate-100 border-t-2 border-slate-300"><td class="px-6 py-3 text-sm font-bold text-slate-900">TOTAL E-MAIL</td><td class="px-6 py-3 text-sm font-bold text-slate-900 text-right">2.937</td></tr>`;
+        // Dados Históricos por IE
+        const historicoIE = [
+            {mes:"jan/26",data:[12436,1857,1320,285,1043,320,175]},
+            {mes:"fev/26",data:[10320,1456,980,210,892,280,135]},
+            {mes:"mar/26",data:[12150,1890,1150,295,1045,350,150]},
+            {mes:"abr/26",data:[12680,2100,1200,320,1150,380,152]},
+            {mes:"mai/26",data:[10757,2438,1152,135,1605,283,7]},
+            {mes:"jun/26",data:[9925,2364,899,190,1477,385,2]}
+        ];
 
+        // Dados de IEs com logos
+        const ieCardsData = [
+            {
+                name:"PUCRS ONLINE",
+                logo:"https://bucket-vitrine-wl-prod.edtech.com.br/assets-headless/Logo_Icon_0bd832db2a_4f8bfdd079.svg",
+                motivations:"Documentos, Acessos, Atividade Avaliativa, Orientação sobre Prazos, Dúvidas sobre Certificação",
+                stats:{ra:5000,ouv:3200,pro:1725},
+                insight:"Principal concentrador de demanda com 65% do total"
+            },
+            {
+                name:"FAAP ONLINE",
+                logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQp6eFbWK4LH6au52iHgm_VpLwDTjZKLz0Sg&s",
+                motivations:"Documentos, Tecnologia, Tutoria, Declaração de Matrícula, Transferência para Retenção",
+                stats:{ra:1200,ouv:800,pro:364},
+                insight:"Segunda maior demanda com 15,5% do total"
+            },
+            {
+                name:"FIA ONLINE",
+                logo:"https://www.fiaonline.com.br/hs-fs/hubfs/FIA-Online---Logo-(Branco)-1-1.webp",
+                motivations:"Documentos, Acessos, Dúvidas sobre Certificação, Declaração de Matrícula",
+                stats:{ra:550,ouv:250,pro:99},
+                insight:"Demanda moderada com 5,9% do total"
+            },
+            {
+                name:"IMPACTA DIGITAL",
+                logo:"https://digital.impacta.com.br/hs-fs/hubfs/FACULDADE-LOGO-DIGITAL-NORMAL.png",
+                motivations:"Documentos, Tecnologia, Curso/Cronograma, Dúvidas de Primeiro Acesso",
+                stats:{ra:120,ouv:40,pro:30},
+                insight:"Baixa demanda com 1,2% do total"
+            },
+            {
+                name:"FSL DIGITAL",
+                logo:"https://digital.faculdadesiriolibanes.org.br/hs-fs/hubfs/logo-sirio-libanes-negativo.png",
+                motivations:"Documentos, Acessos, Curso/Cronograma, Dúvidas sobre Pendência de Documentos",
+                stats:{ra:800,ouv:450,pro:227},
+                insight:"Demanda moderada com 9,7% do total"
+            },
+            {
+                name:"UNESC DIGITAL",
+                logo:"https://bucket-vitrine-wl-prod.edtech.com.br/assets-headless/logo_49f3ba3e59_1_1_1_5cace08c25.webp",
+                motivations:"Documentos, Acessos, Transferência para Renegociação, Orientação sobre Prazos",
+                stats:{ra:250,ouv:85,pro:50},
+                insight:"Demanda reduzida com 2,5% do total"
+            }
+        ];
+
+        // TOP 5 Motivos
+        const top5Motivos = [
+            {rank:1,motivo:"DOCUMENTOS - Dúvidas sobre Certificação",classificacao:"Validação de documentos, Emissão de certificados, Prazos de entrega"},
+            {rank:2,motivo:"ACESSOS - Dúvidas de Primeiro Acesso",classificacao:"Problemas de login, Recuperação de senha, Acesso à plataforma"},
+            {rank:3,motivo:"PRORROGAÇÃO - Prazo Expirado",classificacao:"Extensão de prazos, Reingresso, Prorrogação de disciplinas"},
+            {rank:4,motivo:"ATIVIDADE AVALIATIVA - Dúvidas TCC/TPF",classificacao:"Dúvidas sobre trabalhos finais, Orientações acadêmicas"},
+            {rank:5,motivo:"ATENDIMENTO - Transferência para Retenção",classificacao:"Assuntos relacionados a cancelamento e retenção"}
+        ];
+
+        // TOP 5 Origens
+        const top5Origens = [
+            {rank:1,origem:"Secretaria",classificacao:"Dúvidas sobre certificação, validação de documentos"},
+            {rank:2,origem:"Tecnologia",classificacao:"Dúvidas de primeiro acesso, acessos com problema"},
+            {rank:3,origem:"Retenção",classificacao:"Prazo expirado, prorrogação de disciplinas e provas finais"},
+            {rank:4,origem:"Atendimento",classificacao:"Assuntos relacionados ao relacionamento como dúvidas do curso"},
+            {rank:5,origem:"Financeiro",classificacao:"Questões relacionadas a pagamentos e cobrança"}
+        ];
+
+        // Maiores Concentradores
+        const maioresConcentradores = [
+            {rank:1,motivo:"DOCUMENTOS",descricao:"Dúvidas sobre certificação",volume:2850,percentual:18.66},
+            {rank:2,motivo:"ACESSOS",descricao:"Dúvidas de primeiro acesso",volume:2340,percentual:15.32},
+            {rank:3,motivo:"PRORROGAÇÃO",descricao:"Prazo expirado",volume:1890,percentual:12.37},
+            {rank:4,motivo:"ATIVIDADE AVALIATIVA",descricao:"Dúvidas TCC/TPF",volume:1560,percentual:10.21},
+            {rank:5,motivo:"ATENDIMENTO",descricao:"Transferência para Retenção",volume:1340,percentual:8.77}
+        ];
+
+        // Preencher tabela de IE
+        const ieTable = document.getElementById('ieTableBody');
+        ieData.forEach(item => { 
+            ieTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-3 text-sm text-slate-900">${item.name}</td><td class="px-6 py-3 text-sm text-slate-900 text-right font-medium">${item.value.toLocaleString()}</td></tr>`; 
+        });
+        ieTable.innerHTML += `<tr class="bg-blue-50 border-t-2 border-blue-200"><td class="px-6 py-3 text-sm font-bold text-slate-900">CONSOLIDADO</td><td class="px-6 py-3 text-sm font-bold text-slate-900 text-right">15.267</td></tr>`;
+
+        // Preencher legenda de canal
         const canalLegend = document.getElementById('canalLegend');
-        canalData.forEach(item => { canalLegend.innerHTML += `<div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100"><div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${item.color}"></div><span class="text-sm font-bold text-slate-700">${item.name}</span></div><div class="flex items-center gap-4"><span class="text-lg font-black text-slate-900">${item.value.toLocaleString('pt-BR')}</span><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">${((item.value/15242)*100).toFixed(1)}%</span></div></div>`; });
+        canalData.forEach(item => { 
+            canalLegend.innerHTML += `<div class="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100"><div class="flex items-center gap-3"><div class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${item.color}"></div><span class="text-sm font-bold text-slate-700">${item.name}</span></div><div class="flex items-center gap-4"><span class="text-lg font-black text-slate-900">${item.value.toLocaleString()}</span><span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md border border-blue-100">${((item.value/15267)*100).toFixed(1)}%</span></div></div>`; 
+        });
 
-        const evolutionOptions = { series: [{ name: 'Atendimentos', type: 'column', data: historicoMensal.map(d => d.total) }, { name: '% da Base', type: 'line', data: historicoMensal.map(d => d.percentual) }, { name: 'Base de Ativos', type: 'line', data: historicoMensal.map(d => d.base) }], chart: { height: 350, type: 'line', stacked: false, toolbar: { show: false } }, stroke: { width: [0, 4, 2], curve: 'smooth', dashArray: [0, 0, 5] }, colors: ['#1e3a8a', '#fbbf24', '#60a5fa'], xaxis: { categories: historicoMensal.map(d => d.mes) }, yaxis: [{ title: { text: 'Atendimentos' }, labels: { formatter: (v) => v.toLocaleString('pt-BR') } }, { opposite: true, labels: { formatter: (v) => v.toFixed(2) + '%' } }, { opposite: true, labels: { formatter: (v) => (v/1000).toFixed(0) + 'k' }, min: 130000, max: 170000 }], tooltip: { shared: true, intersect: false, y: { formatter: function (y, { seriesIndex }) { if(seriesIndex === 1) return y.toFixed(2) + '%'; if(seriesIndex === 2) return y.toLocaleString('pt-BR'); return y.toLocaleString('pt-BR'); } } }, legend: { position: 'bottom' } };
+        // Gráfico de Evolução
+        const evolutionOptions = {
+            series: [
+                { name: 'Atendimentos', type: 'column', data: historicoMensal.map(d => d.total) },
+                { name: '% da Base', type: 'line', data: historicoMensal.map(d => d.percentual) },
+                { name: 'Base de Ativos', type: 'line', data: historicoMensal.map(d => d.base) }
+            ],
+            chart: { height: 350, type: 'line', stacked: false, toolbar: { show: false } },
+            stroke: { width: [0, 4, 2], curve: 'smooth', dashArray: [0, 0, 5] },
+            colors: ['#1e3a8a', '#fbbf24', '#60a5fa'],
+            xaxis: { categories: historicoMensal.map(d => d.mes) },
+            yaxis: [
+                { title: { text: 'Atendimentos' } },
+                { opposite: true, labels: { formatter: (v) => v.toFixed(2) + '%' } },
+                { opposite: true, labels: { formatter: (v) => (v/1000).toFixed(0) + 'k' }, min: 125000, max: 175000 }
+            ],
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                    formatter: function (y, { seriesIndex }) {
+                        if(seriesIndex === 1) return y.toFixed(2) + '%';
+                        if(seriesIndex === 2) return y.toLocaleString();
+                        return y;
+                    }
+                }
+            },
+            legend: { position: 'bottom' }
+        };
         new ApexCharts(document.querySelector("#evolutionChart"), evolutionOptions).render();
 
-        const canalOptions = { series: canalData.map(d => d.value), chart: { type: 'donut', height: 300 }, labels: canalData.map(d => d.name), colors: canalData.map(d => d.color), plotOptions: { pie: { donut: { size: '75%' } } }, legend: { show: false }, dataLabels: { enabled: false } };
+        // Gráfico de Canal
+        const canalOptions = {
+            series: canalData.map(d => d.value),
+            chart: { type: 'donut', height: 300 },
+            labels: canalData.map(d => d.name),
+            colors: canalData.map(d => d.color),
+            plotOptions: { pie: { donut: { size: '75%' } } },
+            legend: { show: false },
+            dataLabels: { enabled: false }
+        };
         new ApexCharts(document.querySelector("#canalChart"), canalOptions).render();
 
+        // Gráfico de Evolução por IE
+        const ieEvolutionOptions = {
+            series: [
+                { name: 'PUCRS', data: historicoIE.map(h => h.data[0]) },
+                { name: 'FAAP', data: historicoIE.map(h => h.data[1]) },
+                { name: 'FIA', data: historicoIE.map(h => h.data[2]) },
+                { name: 'IMPACTA', data: historicoIE.map(h => h.data[3]) },
+                { name: 'FSL', data: historicoIE.map(h => h.data[4]) },
+                { name: 'UNESC', data: historicoIE.map(h => h.data[5]) },
+                { name: 'SANTA CASA', data: historicoIE.map(h => h.data[6]) }
+            ],
+            chart: { type: 'bar', height: 350, toolbar: { show: false } },
+            plotOptions: { bar: { horizontal: false, columnWidth: '55%', borderRadius: 4, dataLabels: { position: 'top' } } },
+            dataLabels: { enabled: true, offsetY: -20, style: { fontSize: '10px', colors: ["#304758"] } },
+            xaxis: { categories: historicoIE.map(h => h.mes) },
+            colors: ['#1e3a8a', '#fbbf24', '#60a5fa', '#10b981', '#ef4444', '#f97316', '#8b5cf6'],
+            legend: { position: 'bottom' }
+        };
+        new ApexCharts(document.querySelector("#ieEvolutionChart"), ieEvolutionOptions).render();
+
+        // Análise Executiva
         const analysis = [
-            { icon: 'trending-down', color: 'red', title: 'Redução do volume de atendimentos', text: 'O volume total de atendimentos apresentou redução em junho/26, totalizando 15.242 atendimentos, após registrar 16.377 atendimentos em maio/26, representando uma queda de 6,93% no período.' }, 
-            { icon: 'check-circle', color: 'blue', title: 'Taxa de atendimentos / base controlada', text: 'A taxa de atendimentos frente à base de ativos encerrou junho em 9,25%, permanecendo dentro do histórico observado ao longo do ano, embora abaixo do pico registrado em janeiro (14,92%).' }, 
-            { icon: 'alert-circle', color: 'yellow', title: 'Alta concentração no canal WhatsApp', text: 'O canal WhatsApp representou 80,8% de todos os atendimentos em junho (12.330 casos), mantendo-se como principal responsável pela demanda operacional.' },
-            { icon: 'target', color: 'purple', title: 'Documentação como principal motivação', text: 'Dúvidas sobre documentação, certificação e acessos representam os maiores concentradores de demanda, indicando necessidade de melhorias em processos administrativos.' },
-            { icon: 'refresh-cw', color: 'orange', title: 'Otimização do Fluxo de Retenção (FAAP)', text: 'Identificamos que 8,8% (163 de 1857) dos atendimentos via WhatsApp na FAAP foram transferências para retenção. Isso ocorreu devido ao direcionamento incorreto de alunos ao bot de relacionamento, sobrecarregando o fluxo inicial.' }
+            { icon: 'activity', color: 'blue', title: 'Redução de Demanda', text: 'O volume total de atendimentos apresentou redução de 6,8% em junho (15.267) comparado a maio (16.377), demonstrando melhoria operacional.' },
+            { icon: 'trending-up', color: 'yellow', title: 'Taxa de Atendimento Controlada', text: 'A taxa de atendimentos frente à base de ativos permanece em 9,27%, mantendo-se dentro do histórico observado ao longo do ano.' },
+            { icon: 'users', color: 'purple', title: 'Alta Concentração em PUCRS', text: 'O canal PUCRS ONLINE representa 65% de todos os atendimentos do mês, mantendo-se como principal responsável pela demanda operacional.' },
+            { icon: 'alert-circle', color: 'red', title: 'Documentação como Principal Motivo', text: 'Temas relacionados a documentação (certificados, validação) concentram 18,66% da demanda total, sendo o maior concentrador de casos.' }
         ];
         const analysisDiv = document.getElementById('executiveAnalysis');
-        analysis.forEach(item => { analysisDiv.innerHTML += `<div class="flex gap-4 p-4 bg-${item.color}-50 rounded-lg border-l-4 border-${item.color}-500"><div class="flex-shrink-0"><i data-lucide="${item.icon}" class="w-6 h-6 text-${item.color}-600 mt-1"></i></div><div><p class="font-semibold text-slate-900">${item.title}</p><p class="text-sm text-slate-700 mt-1">${item.text}</p></div></div>`; });
+        analysis.forEach(item => {
+            analysisDiv.innerHTML += `<div class="flex gap-4 p-4 bg-${item.color}-50 rounded-lg border-l-4 border-${item.color}-500"><div class="flex-shrink-0"><i data-lucide="${item.icon}" class="w-6 h-6 text-${item.color}-600 mt-1"></i></div><div><p class="font-semibold text-slate-900">${item.title}</p><p class="text-sm text-slate-700 mt-1">${item.text}</p></div></div>`;
+        });
 
-        const ieCardsData = [
-            { name: "PUCRS ONLINE", logo: "https://bucket-vitrine-wl-prod.edtech.com.br/assets-headless/Logo_Icon_0bd832db2a_4f8bfdd079.svg", email: "Documentos, Acessos, Atividade avaliativa", whats: "Orientação sobre prazos, Dúvidas sobre certificação, Prorrogação" },
-            { name: "FAAP ONLINE", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQp6eFbWK4LH6au52iHgm_VpLwDTjZKLz0Sg&s", email: "Documentos, Tecnologia, Tutoria", whats: "Declaração de matrícula, Transferência para Retenção, Dúvidas sobre pendência" },
-            { name: "FIA ONLINE", logo: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663753114926/bGqnuInwWRNlDCbA.png", email: "Documentos, Atividade avaliativa, Acessos", whats: "Transferência para Retenção, Dúvidas sobre certificação, Declaração de matrícula" },
-            { name: "FSL DIGITAL", logo: "https://digital.faculdadesiriolibanes.org.br/hs-fs/hubfs/logo-sirio-libanes-negativo.png", email: "Documentos, Acessos, Curso/Cronograma", whats: "Acessos - Senha expirada, Dúvidas sobre pendência, Dúvidas sobre documentação" },
-            { name: "UNESC DIGITAL", logo: "https://bucket-vitrine-wl-prod.edtech.com.br/assets-headless/logo_49f3ba3e59_1_1_1_5cace08c25.webp", email: "Documentos, Acessos, Curso/Cronograma", whats: "Transferência para Renegociação, Orientação sobre prazos, Dúvidas sobre certificação" },
-            { name: "IMPACTA DIGITAL", logo: "https://digital.impacta.com.br/hs-fs/hubfs/FACULDADE-LOGO-DIGITAL-NORMAL.png", email: "Documentos, Tecnologia, Curso/Cronograma", whats: "Dúvidas de primeiro acesso, Instabilidade sala virtual, Não aluno" }
-        ];
+        // Cards de IE
+        const cardsDiv = document.getElementById('ieCards');
+        ieCardsData.forEach(ie => {
+            cardsDiv.innerHTML += `<div class="bg-white rounded-lg shadow-md p-6"><div class="grid grid-cols-1 md:grid-cols-4 gap-6"><div class="flex items-start justify-center md:justify-start"><div class="bg-black p-4 rounded-lg w-[150px] h-[150px] flex items-center justify-center border border-slate-700"><img src="${ie.logo}" alt="${ie.name}" class="w-full h-full object-contain"></div></div><div class="md:col-span-3 space-y-4"><h3 class="font-bold text-slate-900 text-lg">${ie.name}</h3><div><p class="text-xs font-semibold text-slate-600 mb-1">PRINCIPAIS MOTIVAÇÕES</p><p class="text-sm text-slate-700 leading-relaxed">${ie.motivations}</p></div><div class="p-3 bg-blue-50 rounded border-l-4 border-blue-600"><p class="text-xs text-slate-700 italic">${ie.insight}</p></div><div class="flex gap-8"><div><p class="text-xs text-slate-600 font-semibold">RA</p><p class="text-lg font-bold text-slate-900">${ie.stats.ra.toLocaleString()}</p></div><div><p class="text-xs text-slate-600 font-semibold">Ouvidoria</p><p class="text-lg font-bold text-slate-900">${ie.stats.ouv.toLocaleString()}</p></div><div><p class="text-xs text-slate-600 font-semibold">PROCON</p><p class="text-lg font-bold text-slate-900">${ie.stats.pro.toLocaleString()}</p></div></div></div></div></div>`;
+        });
 
-        const cardsDiv = document.getElementById('ieCards' );
-        ieCardsData.forEach(ie => { cardsDiv.innerHTML += `<div class="bg-white rounded-lg shadow-md p-6"><div class="grid grid-cols-1 md:grid-cols-4 gap-8"><div class="flex items-center justify-center"><div class="bg-black p-4 rounded-lg w-full aspect-square flex items-center justify-center border border-slate-700 max-w-[180px]"><img src="${ie.logo}" alt="${ie.name}" class="w-full h-full object-contain"></div></div><div class="md:col-span-3 space-y-6"><h3 class="font-black text-slate-900 text-2xl border-b pb-2">${ie.name}</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="space-y-2"><div class="flex items-center gap-2 text-slate-800 font-bold uppercase text-xs mb-1"><i data-lucide="mail" class="w-4 h-4 text-slate-600"></i> E-mail</div><div class="text-sm text-slate-700 bg-slate-50 p-3 rounded border-l-4 border-slate-300 space-y-1">${ie.email.split(',').map(item => `<div class="font-medium">${item.trim()}</div>`).join('')}</div></div><div class="space-y-2"><div class="flex items-center gap-2 text-green-700 font-bold uppercase text-xs mb-1"><i data-lucide="message-circle" class="w-4 h-4 text-green-600"></i> WhatsApp</div><div class="text-sm text-slate-700 bg-green-50 p-3 rounded border-l-4 border-green-300 space-y-1">${ie.whats.split(',').map(item => `<div class="font-medium">${item.trim()}</div>`).join('')}</div></div></div></div></div></div>`; });
+        // TOP 5 Motivos
+        const motivosTable = document.getElementById('motivosTableBody');
+        top5Motivos.forEach(item => {
+            motivosTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-4 py-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">${item.rank}</span></td><td class="px-4 py-3 text-sm text-slate-900 font-medium">${item.motivo}</td><td class="px-4 py-3 text-sm text-slate-700">${item.classificacao}</td></tr>`;
+        });
 
-        const topMotivos = [["Documentos - Dúvidas sobre certificação", "Solicitação de certificados; Validação de documentos; Emissão de diplomas"],["Acessos - Dúvidas de primeiro acesso", "Problemas de login; Recuperação de senha; Acesso à plataforma"],["Prorrogação - Prazo expirado", "Solicitação de prorrogação; Extensão de prazos; Disciplinas atrasadas"],["Atividade Avaliativa - Dúvidas TCC/TPF", "Orientações sobre trabalhos finais; Dúvidas de metodologia; Prazos de entrega"],["Atendimento - Transferência para Retenção", "Assuntos relacionados a cancelamento; Dificuldade de permanência; Insatisfação"]];
-        const topMotivosTable = document.getElementById('topMotivosTableBody');
-        topMotivos.forEach((m, i) => { topMotivosTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-4"><div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">${i+1}</div></td><td class="px-6 py-4 text-sm font-bold text-slate-900">${m[0]}</td><td class="px-6 py-4 text-sm text-slate-700 leading-relaxed">${m[1]}</td></tr>`; });
-
-        const origens = [["Secretaria", "Dúvidas sobre certificação, validação de documentos"],["Tecnologia", "Dúvidas de primeiro acesso, acessos com problema"],["Retenção", "Prazo expirado, prorrogação de disciplinas e provas finais"],["Atendimento", "Assuntos relacionados ao relacionamento como dúvidas do curso, dúvidas sobre o cronograma, prazos de avaliações"]];
+        // TOP 5 Origens
         const origensTable = document.getElementById('origensTableBody');
-        origens.forEach((o, i) => { origensTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-6 py-4"><div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">${i+1}</div></td><td class="px-6 py-4 text-sm font-bold text-slate-900">${o[0]}</td><td class="px-6 py-4 text-sm text-slate-700 leading-relaxed">${o[1]}</td></tr>`; });
+        top5Origens.forEach(item => {
+            origensTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-4 py-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">${item.rank}</span></td><td class="px-4 py-3 text-sm text-slate-900 font-medium">${item.origem}</td><td class="px-4 py-3 text-sm text-slate-700">${item.classificacao}</td></tr>`;
+        });
 
+        // Maiores Concentradores
+        const concentradoresTable = document.getElementById('concentradoresTableBody');
+        maioresConcentradores.forEach(item => {
+            concentradoresTable.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50"><td class="px-4 py-3"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">${item.rank}</span></td><td class="px-4 py-3 text-sm text-slate-900 font-medium">${item.motivo}</td><td class="px-4 py-3 text-sm text-slate-700">${item.descricao}</td><td class="px-4 py-3 text-sm text-slate-900 text-right font-medium">${item.volume.toLocaleString()}</td><td class="px-4 py-3 text-sm text-slate-900 text-right"><span class="inline-block bg-blue-100 text-blue-700 px-2 py-1 rounded font-bold">${item.percentual.toFixed(2)}%</span></td></tr>`;
+        });
+
+        // Inicializar ícones Lucide
         lucide.createIcons();
     </script>
 </body>
 </html>
+
