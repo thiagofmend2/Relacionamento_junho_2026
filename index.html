@@ -34,7 +34,11 @@
             </div>
             <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-400">
                 <div class="flex items-center justify-between">
-                    <div><p class="text-slate-600 text-sm font-medium uppercase">Base de Ativos</p><p class="text-3xl font-bold text-slate-900 mt-2">164.717</p></div>
+                    <div>
+                        <p class="text-slate-600 text-sm font-medium uppercase">Base de Ativos</p>
+                        <p class="text-3xl font-bold text-slate-900 mt-2">164.717</p>
+                        <p class="text-[10px] text-slate-400 mt-1 italic">Base GPO não inclusa</p>
+                    </div>
                     <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="users" class="w-8 h-8 text-blue-400"></i></div>
                 </div>
             </div>
@@ -96,9 +100,9 @@
             </div>
         </div>
 
-        <!-- Análise Executiva -->
+        <!-- Principais Insights -->
         <section class="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Análise Executiva</h2>
+            <h2 class="text-lg font-bold text-slate-900 mb-6 uppercase">Principais Insights</h2>
             <div class="space-y-4" id="executiveAnalysis"></div>
         </section>
 
@@ -233,7 +237,7 @@
         const canalOptions = { 
             series: canalData.map(d => d.value), 
             chart: { type: 'donut', height: 300 }, 
-            labels: canalData.map(d => d.name), 
+            labels: canalData.map(d => d.name),
             colors: canalData.map(d => d.color), 
             plotOptions: { pie: { donut: { size: '75%' } } }, 
             legend: { show: false }, 
@@ -241,7 +245,7 @@
         };
         new ApexCharts(document.querySelector("#canalChart"), canalOptions).render();
 
-        // Análise Executiva
+        // Principais Insights
         const analysis = [
             { icon: 'trending-down', color: 'red', title: 'Redução do volume de atendimentos', text: 'O volume total de atendimentos apresentou redução em junho/26, totalizando 15.242 atendimentos, após registrar 16.377 atendimentos em maio/26, representando uma queda de 6,93% no período.' }, 
             { icon: 'check-circle', color: 'blue', title: 'Taxa de atendimentos / base controlada', text: 'A taxa de atendimentos frente à base de ativos encerrou junho em 9,25%, permanecendo dentro do histórico observado ao longo do ano, embora abaixo do pico registrado em janeiro (14,92%).' }, 
